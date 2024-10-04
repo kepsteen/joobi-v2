@@ -30,19 +30,23 @@ export async function signup(formData: FormData) {
 
 	// type-casting here for convenience
 	// in practice, you should validate your inputs
-	const data = {
+	const userData = {
 		email: formData.get("email") as string,
 		password: formData.get("password") as string,
 	};
 
-	const { error } = await supabase.auth.signUp(data);
+	const { data, error } = await supabase.auth.signUp(userData);
 
 	if (error) {
 		redirect("/error");
 	}
 
-	revalidatePath("/", "layout");
-	redirect("/");
+	if (data.user && data.user.id) {
+		// Optionally, you can sign in the user immediately after signup
+		await supabase.auth.signInWithPassword(userData);
+		revalidatePath("/", "layout");
+		redirect("/");
+	}
 }
 
 export async function loginWithGithub() {
