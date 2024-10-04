@@ -48,10 +48,16 @@ export async function signup(formData: FormData) {
 export async function loginWithGithub() {
 	const supabase = createClient();
 
+	const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
+	if (!siteUrl) {
+		console.error("NEXT_PUBLIC_SITE_URL is not set");
+		return redirect("/error");
+	}
+
 	const { data, error } = await supabase.auth.signInWithOAuth({
 		provider: "github",
 		options: {
-			redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/api/auth/callback`,
+			redirectTo: `${siteUrl}/api/auth/callback`,
 		},
 	});
 
@@ -62,4 +68,12 @@ export async function loginWithGithub() {
 	if (data?.url) {
 		return redirect(data.url);
 	}
+}
+
+export async function signOut() {
+	const supabase = createClient();
+
+	await supabase.auth.signOut();
+
+	redirect("/");
 }
