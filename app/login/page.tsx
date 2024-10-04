@@ -1,5 +1,5 @@
 import { getUser } from "@/lib/utils/supabase/server";
-import { login, signup, loginWithGithub } from "./actions";
+import { login, signup, loginWithGithub, signOut } from "./actions";
 
 export default async function LoginPage() {
 	const user = await getUser();
@@ -54,8 +54,10 @@ export default async function LoginPage() {
 							</svg>
 							Login with GitHub
 						</button>
+						<button formAction={signOut}>Sign out</button>
 					</form>
 				</div>
+
 				{user && <p className="mt-4">Logged in as: {user.email}</p>}
 			</div>
 		</>

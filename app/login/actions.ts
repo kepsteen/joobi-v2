@@ -63,3 +63,11 @@ export async function loginWithGithub() {
 		return redirect(data.url);
 	}
 }
+
+export async function signOut() {
+	const supabase = createClient();
+
+	await supabase.auth.signOut();
+
+	redirect("/");
+}
