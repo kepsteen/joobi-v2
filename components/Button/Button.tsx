@@ -1,0 +1,57 @@
+import React, { JSX } from "react";
+import { cva, type VariantProps } from "class-variance-authority";
+
+import { cn } from "@/lib/utils/utils";
+
+const buttonVariants = cva("btn ring-neutral", {
+	variants: {
+		variant: {
+			default: "bg-primary text-base-100 hover:bg-primary/90",
+			outline: "btn-outline bg-base-100 hover:bg-neutral hover:text-base-100",
+			error: "bg-error text-white hover:bg-error/90",
+			secondary: "bg-secondary text-white hover:bg-secondary/90",
+			accent: "bg-accent text-base-100 hover:bg-accent/90",
+			link: "text-primary underline underline-offset-4 hover:text-primary/90",
+		},
+		size: {
+			default: "btn-md",
+			sm: "btn-sm",
+			lg: "btn-large",
+			icon: "btn-square",
+		},
+	},
+	defaultVariants: {
+		variant: "default",
+		size: "default",
+	},
+});
+
+export interface ButtonProps
+	extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+		VariantProps<typeof buttonVariants> {
+	label?: boolean | JSX.Element | string;
+	icon?: JSX.Element;
+}
+
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+	(
+		{ className, children, variant, size, label, icon, ...props },
+		ref
+	): JSX.Element => {
+		return (
+			<button
+				type="button"
+				className={cn(buttonVariants({ variant, size, className }))}
+				ref={ref}
+				{...props}
+			>
+				{React.isValidElement(icon) && icon}
+				{label}
+				{children}
+			</button>
+		);
+	}
+);
+Button.displayName = "Button";
+
+export { Button, buttonVariants };
