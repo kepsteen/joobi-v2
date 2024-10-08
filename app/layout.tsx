@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
+import { Martian_Mono } from "next/font/google";
 import "@/app/globals.css";
-import ThemeProvider from "../components/Theme/ThemeProvider";
+
+const martian = Martian_Mono({
+	subsets: ["latin"],
+	display: "swap",
+	variable: "--font-martian",
+});
 
 export const metadata: Metadata = {
 	title: "Joobi",
@@ -32,9 +38,9 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en">
+		<html lang="en" className={martian.className}>
 			<body>
-				<ThemeProvider />
+				{/* <ThemeProvider /> */}
 				{children}
 			</body>
 		</html>

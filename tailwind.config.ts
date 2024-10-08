@@ -29,6 +29,9 @@ const config: Config = {
 			},
 		],
 	},
+	corePlugins: {
+		aspectRatio: true,
+	},
 	plugins: [daisyui],
 };
 export default config;

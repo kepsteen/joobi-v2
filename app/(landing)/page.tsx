@@ -1,10 +1,9 @@
-import { Button } from "@/components/Button/Button";
+import { Nav } from "@/components/Navigation/Nav";
 
 export default function LandingPage() {
 	return (
 		<>
-			<h1>Landing Page</h1>
-			<Button>Primary</Button>
+			<Nav />
 		</>
 	);
 }
