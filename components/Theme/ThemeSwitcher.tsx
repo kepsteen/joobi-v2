@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { Button } from "@/components/Button/Button";
 
 export default function ThemeSwitcher({
 	theme,
@@ -32,16 +33,12 @@ export default function ThemeSwitcher({
 	}
 
 	return (
-		<button
-			onClick={toggleTheme}
-			className="btn btn-primary"
-			disabled={isLoading}
-		>
+		<Button onClick={toggleTheme} variant="default" disabled={isLoading}>
 			{isLoading ? (
 				<span className="loading loading-spinner text-primary" />
 			) : (
 				currentTheme
 			)}
-		</button>
+		</Button>
 	);
 }
