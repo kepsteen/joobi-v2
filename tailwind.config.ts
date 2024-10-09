@@ -13,6 +13,9 @@ const config: Config = {
 				background: "var(--background)",
 				foreground: "var(--foreground)",
 			},
+			backgroundImage: {
+				"landing-pattern": "url(/laptop-noglare.svg)",
+			},
 		},
 	},
 	daisyui: {
@@ -24,11 +27,13 @@ const config: Config = {
 					accent: "#7A98CD",
 					neutral: "#EEF9F2",
 					"base-100": "#020202",
+					error: "#f52614",
 				},
 			},
-			"light",
-			"dark",
 		],
+	},
+	corePlugins: {
+		aspectRatio: true,
 	},
 	plugins: [daisyui],
 };
