@@ -20,12 +20,12 @@ const sizes: Array<"default" | "sm" | "lg" | "icon" | null | undefined> = [
 ];
 
 const variantClasses = {
-	default: "bg-primary text-base-100 hover:bg-primary/90",
+	default: "bg-primary text-base-100 hover:bg-primary/80",
 	outline: "btn-outline bg-base-100 hover:bg-neutral hover:text-base-100",
-	error: "bg-error text-white hover:bg-error/90",
-	secondary: "bg-secondary text-white hover:bg-secondary/90",
-	accent: "bg-accent text-base-100 hover:bg-accent/90",
-	link: "text-primary underline underline-offset-4 hover:text-primary/90",
+	error: "bg-error text-white hover:bg-error/80",
+	secondary: "bg-secondary text-white hover:bg-secondary/80",
+	accent: "bg-accent text-base-100 hover:bg-accent/80",
+	link: "text-primary underline underline-offset-4 hover:text-primary/80",
 };
 
 const sizeClasses = {
