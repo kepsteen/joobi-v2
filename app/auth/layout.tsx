@@ -8,7 +8,7 @@ import {
 } from "@/components/Card/Card";
 import { NameLogo } from "@/components/NameLogo/NameLogo";
 
-interface AuthLayoutProps {
+export interface AuthLayoutProps {
 	children: ReactNode;
 	title: string | ReactNode;
 	description: string;
