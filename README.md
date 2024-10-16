@@ -12,7 +12,7 @@ Joobi is a full-stack application to gamify the job search process and help job 
 
 **Backend:** Supabase
 
-**Testing** React Testing Library, Jest
+**Testing:** React Testing Library, Jest
 
-**Deployment** Vercel
+**Deployment:** Vercel
 
