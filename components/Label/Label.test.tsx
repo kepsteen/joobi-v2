@@ -11,7 +11,7 @@ describe("Label", () => {
 
 		const label = screen.getByTestId("testLabel");
 		expect(label).toBeInTheDocument();
-		expect(label).toHaveClass("input input-bordered flex items-center gap-2");
+		expect(label).toHaveClass("flex flex-col gap-2");
 
 		const labelChildren = screen.getByTestId("testChild");
 		expect(labelChildren).toHaveTextContent("Label Children");

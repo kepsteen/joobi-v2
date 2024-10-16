@@ -16,12 +16,12 @@ export default function LandingPage() {
 						The free, fun and effective way to track applications and level up
 						your technical skills.
 					</Heading>
-					<Link href="/sign-up" className="w-full">
+					<Link href="/auth/signup" className="w-full">
 						<Button variant="default" className="btn-block">
 							Get Started
 						</Button>
 					</Link>
-					<Link href="/login" className="w-full">
+					<Link href="/auth/login" className="w-full">
 						<Button variant="outline" className="btn-block">
 							I already have an account
 						</Button>
