@@ -6,7 +6,6 @@ describe("Logo", () => {
 	it("renders the logo", () => {
 		render(<Logo src="/Joobert@2x.svg" data-testid="testLogo" />);
 
-		const logo = screen.getByTestId("testLogo");
-		expect(logo).toBeInTheDocument();
+		expect(screen.getByAltText("Joobert (Joobi Mascot)")).toBeInTheDocument();
 	});
 });
