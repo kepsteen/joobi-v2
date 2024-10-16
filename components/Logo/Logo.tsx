@@ -20,7 +20,7 @@ export const Logo = ({ className, src }: LogoProps): JSX.Element => {
 	return (
 		<div className={cn("relative h-[64px] w-[85px]", className)}>
 			<Image
-				data-testid="joobi-logo"
+				data-testid="joobiLogo"
 				src={src}
 				alt="Joobert (Joobi Mascot)"
 				fill

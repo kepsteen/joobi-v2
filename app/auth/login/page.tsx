@@ -8,7 +8,7 @@ export default async function LoginPage() {
 	return (
 		<>
 			<main className="min-h-screen flex justify-center items-center">
-				<Card className="flex flex-col items-center justify-center py-2">
+				<Card className="flex flex-col items-center justify-center">
 					<CardContent>
 						<form className="flex flex-col space-y-4 w-full max-w-md">
 							<input
