@@ -11,12 +11,12 @@ export default function LandingPage() {
 					<Nav />
 					<Heading
 						headingLevel="h2"
-						className="text-xl font-normal text-neutral mb-4"
+						className="text-xl font-normal text-white mb-4"
 					>
 						The free, fun and effective way to track applications and level up
 						your technical skills.
 					</Heading>
-					<Link href="/auth/signup" className="w-full">
+					<Link href="/auth/register" className="w-full">
 						<Button variant="default" className="btn-block">
 							Get Started
 						</Button>
