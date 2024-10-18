@@ -45,7 +45,7 @@ export async function signup(formData: FormData) {
 		// Optionally, you can sign in the user immediately after signup
 		await supabase.auth.signInWithPassword(userData);
 		revalidatePath("/", "layout");
-		redirect("/");
+		redirect("/home");
 	}
 }
 
@@ -58,6 +58,7 @@ export async function loginWithGithub() {
 			redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/api/auth/callback`,
 		},
 	});
+	console.log("data.url", data.url);
 
 	if (error) {
 		redirect("/error");
@@ -73,5 +74,5 @@ export async function signOut() {
 
 	await supabase.auth.signOut();
 
-	redirect("/home");
+	redirect("/auth/login");
 }

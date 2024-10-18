@@ -4,6 +4,7 @@ import "@/app/globals.css";
 
 const martian = Martian_Mono({
 	subsets: ["latin"],
+	weight: "variable",
 	display: "swap",
 	variable: "--font-martian",
 });
@@ -38,11 +39,8 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en" className={martian.className}>
-			<body>
-				{/* <ThemeProvider /> */}
-				{children}
-			</body>
+		<html lang="en">
+			<body className={`${martian.className}`}>{children}</body>
 		</html>
 	);
 }

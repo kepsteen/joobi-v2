@@ -1,18 +1,19 @@
-import { getUser } from "@/lib/utils/supabase/server";
-import { login, loginWithGithub, signOut } from "../actions";
-import { Label } from "@/components/Label/Label";
-import { Input } from "@/components/Input/Input";
 import { Button } from "@/components/Button/Button";
+import { Input } from "@/components/Input/Input";
+import { Label } from "@/components/Label/Label";
+import { loginWithGithub, signup } from "../actions";
 
-export default async function LoginPage() {
-	const user = await getUser();
-
+export default function SignupPage() {
 	return (
 		<>
-			<form className="flex flex-col space-y-4 w-full max-w-md">
+			<form className="flex flex-col space-y-2 w-full max-w-lg">
 				<Label>
 					Email
 					<Input id="email" name="email" type="email" placeholder="Email" />
+				</Label>
+				<Label>
+					Username
+					<Input id="username" name="username" placeholder="Username" />
 				</Label>
 				<Label>
 					Password
@@ -23,8 +24,17 @@ export default async function LoginPage() {
 						placeholder="Password"
 					/>
 				</Label>
-				<Button type="submit" variant="secondary" formAction={login}>
-					Log in
+				<Label>
+					Password
+					<Input
+						id="confirmPassword"
+						name="confirmPassword"
+						type="password"
+						placeholder="Confirm Password"
+					/>
+				</Label>
+				<Button type="submit" variant="secondary" formAction={signup}>
+					Sign Up
 				</Button>
 			</form>
 			<div className="mt-2">
@@ -48,10 +58,6 @@ export default async function LoginPage() {
 					</Button>
 				</form>
 			</div>
-			<form action={signOut}>
-				<button type="submit">Sign out</button>
-			</form>
-			<div>{user && <p className="mt-4">Logged in as: {user.email}</p>}</div>
 		</>
 	);
 }
