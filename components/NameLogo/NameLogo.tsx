@@ -8,7 +8,7 @@ type NameLogoProps = {
 export const NameLogo = ({ className }: NameLogoProps) => {
 	return (
 		<div
-			className={cn("flex items-center", className)}
+			className={cn("flex justify-center items-center text-primary", className)}
 			data-testid="testNameLogo"
 		>
 			<p className="text-4xl text-inherit" data-testid="testJoobi">
