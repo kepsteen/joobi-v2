@@ -58,9 +58,9 @@ export async function loginWithGithub() {
 			redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/api/auth/callback`,
 		},
 	});
-	console.log("data.url", data.url);
 
 	if (error) {
+		console.error(error);
 		redirect("/error");
 	}
 
