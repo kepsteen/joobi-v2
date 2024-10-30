@@ -1,7 +1,4 @@
-import {
-	insertUserVisit,
-	updateUserVisit,
-} from "@/lib/utils/supabase/queries/queries";
+import { insertUserVisit, updateUserVisit } from "@/lib/utils/supabase/queries";
 import { NextRequest } from "next/server";
 
 export async function POST(request: NextRequest) {
@@ -27,7 +24,6 @@ export async function POST(request: NextRequest) {
 			});
 		}
 	}
-	// Todo: Add logic to reset the start_of_current_streak if the most_recent_visit is greater than
 
 	return new Response(
 		JSON.stringify({ message: "User visit recorded successfully" }),

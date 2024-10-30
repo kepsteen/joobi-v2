@@ -1,5 +1,6 @@
+"use server";
 import { UUID } from "crypto";
-import { createClient } from "../server";
+import { createClient } from "./server";
 import { DateTime } from "luxon";
 
 export async function getXpToLevel() {
@@ -32,4 +33,30 @@ export async function updateUserVisit(userId: UUID) {
 		.eq("id", userId)
 		.select();
 	return { data, error };
+}
+
+export async function getUserVisits() {
+	const supabase = createClient();
+	const {
+		data: { user },
+	} = await supabase.auth.getUser();
+
+	const { data, error } = await supabase
+		.from("user_visits")
+		.select()
+		.eq("id", user?.id);
+	return { data, error };
+}
+
+export async function getApplicationsCount() {
+	const supabase = createClient();
+	const {
+		data: { user },
+	} = await supabase.auth.getUser();
+	const { count, error } = await supabase
+		.from("applications")
+		.select("*", { count: "exact", head: true })
+		.eq("id", user?.id);
+
+	return { count, error };
 }
