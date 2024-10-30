@@ -3,14 +3,14 @@ import { UUID } from "crypto";
 import { createClient } from "./server";
 import { DateTime } from "luxon";
 
-const supabase = createClient();
-
 export async function getXpToLevel() {
+	const supabase = createClient();
 	const { data, error } = await supabase.from("xp_to_level").select();
 	return { data, error };
 }
 
 export async function insertUserVisit(userId: UUID) {
+	const supabase = createClient();
 	const { data, error } = await supabase
 		.from("user_visits")
 		.insert({
@@ -24,6 +24,7 @@ export async function insertUserVisit(userId: UUID) {
 }
 
 export async function updateUserVisit(userId: UUID) {
+	const supabase = createClient();
 	const { data, error } = await supabase
 		.from("user_visits")
 		.update({
@@ -35,6 +36,7 @@ export async function updateUserVisit(userId: UUID) {
 }
 
 export async function getUserVisits() {
+	const supabase = createClient();
 	const {
 		data: { user },
 	} = await supabase.auth.getUser();
