@@ -49,6 +49,7 @@ export async function getUserVisits() {
 }
 
 export async function getApplicationsCount() {
+	const supabase = createClient();
 	const {
 		data: { user },
 	} = await supabase.auth.getUser();
