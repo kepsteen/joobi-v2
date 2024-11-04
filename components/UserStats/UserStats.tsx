@@ -17,6 +17,7 @@ const STATS_CONFIG: StatConfig[] = [
 ];
 
 export const UserStats = async () => {
+	console.log("testing eslint");
 	const stats = await getStats();
 	return (
 		<Card variant="outline" size="compact" className="w-full max-w-56">
