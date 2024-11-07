@@ -19,7 +19,6 @@ export async function insertUserVisit(userId: UUID) {
 			most_recent_visit: DateTime.local().toISO({ includeOffset: true }),
 		})
 		.select();
-
 	return { data, error };
 }
 
@@ -32,6 +31,15 @@ export async function updateUserVisit(userId: UUID) {
 		})
 		.eq("id", userId)
 		.select();
+	return { data, error };
+}
+
+export async function getUserVisit(userId: UUID) {
+	const supabase = createClient();
+	const { data, error } = await supabase
+		.from("user_visits")
+		.select()
+		.eq("id", userId);
 	return { data, error };
 }
 
