@@ -10,14 +10,14 @@ export default function HomeLayout({
 	return (
 		<html lang="en">
 			<body>
-				<div className="sm:grid sm:grid-cols-[1fr_max-content]">
-					<main className="h-screen sm:order-2">
+				<div className="flex flex-col sm:flex-row h-screen">
+					<NavBar className="order-last sm:order-first" />
+					<main className="flex-1 overflow-auto p-4">
 						<Link href="/home" className="sm:hidden">
 							<NameLogo />
 						</Link>
 						{children}
 					</main>
-					<NavBar className="sm:order-1" />
 				</div>
 			</body>
 		</html>
