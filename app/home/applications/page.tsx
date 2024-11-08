@@ -1,6 +1,18 @@
 import { Card, CardContent } from "@/components/Card/Card";
 import Heading from "@/components/Heading/Heading";
-import { ListPlus } from "lucide-react";
+import { ListPlus, Link as LinkIcon } from "lucide-react";
+import Link from "next/link";
+
+interface Applications {
+	status: "Applied" | "To apply" | "Rejected" | "No answer";
+	company: string;
+	position: string;
+	applied: string;
+	link: string;
+	salary: string;
+	location: string;
+	type: "Remote" | "On-site" | "Hybrid";
+}
 
 export default function Applications() {
 	return (
@@ -14,10 +26,10 @@ export default function Applications() {
 				</div>
 				<ListPlus size={32} color="oklch(var(--p))" />
 			</div>
-			<Card variant="outline" className="max-w-full" size="compact">
+			<Card variant="outline" className="max-w-full p-0" size="compact">
 				<CardContent>
 					<div className="overflow-x-clip">
-						<table className="table">
+						<table className="table text-sm">
 							{/* head */}
 							<thead>
 								<tr>
@@ -32,14 +44,26 @@ export default function Applications() {
 								</tr>
 							</thead>
 							<tbody>
-								{/* row 1 */}
-								{/* <tr>
-									<th>1</th>
-									<td>Cy Ganderton</td>
-									<td>Quality Control Specialist</td>
-									<td>Blue</td>
-								</tr> */}
-								{/* row 2 */}
+								<tr>
+									<td>
+										<span className="badge badge-error">Applied</span>
+									</td>
+									<td>Acme Corp</td>
+									<td>Software Engineer</td>
+									<td className="text-nowrap">10/12/24</td>
+									<td>
+										<Link
+											href="https://www.acmecorp.com/careers"
+											target="_blank"
+											rel="noopener noreferrer"
+										>
+											<LinkIcon className="text-accent" />
+										</Link>
+									</td>
+									<td>$100,000</td>
+									<td className="">New York, NY</td>
+									<td>Full-time</td>
+								</tr>
 							</tbody>
 						</table>
 					</div>
