@@ -36,11 +36,11 @@ export async function updateUserVisit(userId: UUID) {
 
 export async function getUserVisit(userId: UUID) {
 	const supabase = createClient();
-	const { data, error } = await supabase
+	const { data: userVisit, error } = await supabase
 		.from("user_visits")
 		.select()
 		.eq("id", userId);
-	return { data, error };
+	return { userVisit, error };
 }
 
 export async function getUserVisits() {
@@ -49,11 +49,11 @@ export async function getUserVisits() {
 		data: { user },
 	} = await supabase.auth.getUser();
 
-	const { data, error } = await supabase
+	const { data: userVisits, error } = await supabase
 		.from("user_visits")
 		.select()
 		.eq("id", user?.id);
-	return { data, error };
+	return { userVisits, error };
 }
 
 export async function getApplicationsCount() {
@@ -65,6 +65,5 @@ export async function getApplicationsCount() {
 		.from("applications")
 		.select("*", { count: "exact", head: true })
 		.eq("id", user?.id);
-
 	return { count, error };
 }
