@@ -8,7 +8,7 @@ export default function HomeLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<html lang="en">
+		<html lang="en" suppressHydrationWarning={true}>
 			<body>
 				<div className="flex flex-col sm:flex-row h-screen">
 					<NavBar className="order-last sm:order-first" />
