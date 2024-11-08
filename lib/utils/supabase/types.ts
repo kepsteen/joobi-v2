@@ -38,46 +38,46 @@ export type Database = {
         Row: {
           company_id: number | null
           created_at: string
-          id: number
+          id: string
           link: string | null
           location: string | null
           notes: string | null
           position: string | null
           rejection_reason: string | null
           salary: string | null
-          status: string | null
+          status: Database["public"]["Enums"]["Applications"] | null
           submitted_at: string | null
-          type: string | null
+          type: Database["public"]["Enums"]["Job types"] | null
           user_id: string | null
         }
         Insert: {
           company_id?: number | null
           created_at?: string
-          id?: number
+          id?: string
           link?: string | null
           location?: string | null
           notes?: string | null
           position?: string | null
           rejection_reason?: string | null
           salary?: string | null
-          status?: string | null
+          status?: Database["public"]["Enums"]["Applications"] | null
           submitted_at?: string | null
-          type?: string | null
+          type?: Database["public"]["Enums"]["Job types"] | null
           user_id?: string | null
         }
         Update: {
           company_id?: number | null
           created_at?: string
-          id?: number
+          id?: string
           link?: string | null
           location?: string | null
           notes?: string | null
           position?: string | null
           rejection_reason?: string | null
           salary?: string | null
-          status?: string | null
+          status?: Database["public"]["Enums"]["Applications"] | null
           submitted_at?: string | null
-          type?: string | null
+          type?: Database["public"]["Enums"]["Job types"] | null
           user_id?: string | null
         }
         Relationships: [
@@ -158,6 +158,7 @@ export type Database = {
       }
       user_stats: {
         Row: {
+          applications_submitted: number | null
           bugs_fixed: number | null
           daily_challenges: number | null
           id: string
@@ -168,6 +169,7 @@ export type Database = {
           xp: number | null
         }
         Insert: {
+          applications_submitted?: number | null
           bugs_fixed?: number | null
           daily_challenges?: number | null
           id: string
@@ -178,6 +180,7 @@ export type Database = {
           xp?: number | null
         }
         Update: {
+          applications_submitted?: number | null
           bugs_fixed?: number | null
           daily_challenges?: number | null
           id?: string
@@ -251,19 +254,14 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      calculate_login_streak: {
-        Args: {
-          p_user_id: number
-        }
-        Returns: undefined
-      }
       delete_old_records: {
         Args: Record<PropertyKey, never>
         Returns: undefined
       }
     }
     Enums: {
-      [_ in never]: never
+      Applications: "To apply" | "Applied" | "Rejected" | "No answer"
+      "Job types": "Remote" | "On-site" | "Hybrid"
     }
     CompositeTypes: {
       [_ in never]: never

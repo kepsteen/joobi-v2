@@ -1,4 +1,4 @@
-import { insertUserVisit, updateUserVisit } from "@/lib/utils/supabase/queries";
+import { insertUserVisit, updateUserVisit } from "@/lib/utils/supabase/actions";
 import { NextRequest } from "next/server";
 
 export async function POST(request: NextRequest) {

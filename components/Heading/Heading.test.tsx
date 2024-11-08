@@ -5,10 +5,10 @@ import Heading from "./Heading";
 const variants: Array<"h1" | "h2" | "h3" | "h4"> = ["h1", "h2", "h3", "h4"];
 
 const variantClasses = {
-	h1: "text-[3rem] text-primary font-semibold leading-none tracking-tight",
-	h2: "text-[2rem] text-primary font-semibold leading-none tracking-tight",
-	h3: "text-[1.5rem] text-primary font-semibold leading-none tracking-tight",
-	h4: "text-[1.25rem] text-primary leading-none tracking-tight",
+	h1: "text-4xl font-semibold leading-none tracking-tight",
+	h2: "text-2xl font-semibold leading-none tracking-tight",
+	h3: "text-lg font-semibold leading-none tracking-tight",
+	h4: "text-md leading-none tracking-tight",
 };
 
 describe("Heading", () => {

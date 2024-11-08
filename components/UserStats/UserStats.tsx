@@ -1,6 +1,6 @@
 import { Flame } from "lucide-react";
 import { Card, CardContent } from "../Card/Card";
-import { getStats } from "@/lib/utils/calculations/calculations";
+import { getStats } from "@/lib/utils/calculations";
 import { Stats, StatConfig } from "@/lib/types/types";
 
 const STATS_CONFIG: StatConfig[] = [
