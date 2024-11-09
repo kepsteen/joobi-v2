@@ -88,6 +88,5 @@ export async function getUserLevel(xp: number) {
 		.select("level")
 		.gt("max_xp", xp)
 		.lt("min_xp", xp);
-
 	return { level, error };
 }
