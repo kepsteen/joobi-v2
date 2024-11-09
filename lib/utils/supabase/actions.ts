@@ -64,6 +64,30 @@ export async function getApplicationsCount() {
 	const { count, error } = await supabase
 		.from("applications")
 		.select("*", { count: "exact", head: true })
-		.eq("id", user?.id);
+		.eq("user_id", user?.id);
 	return { count, error };
+}
+
+export async function getUserXP() {
+	const supabase = createClient();
+	const {
+		data: { user },
+	} = await supabase.auth.getUser();
+	const { data: xp, error } = await supabase
+		.from("user_xp_totals")
+		.select("total_xp")
+		.eq("user_id", user?.id);
+
+	return { xp, error };
+}
+
+export async function getUserLevel(xp: number) {
+	const supabase = createClient();
+	const { data: level, error } = await supabase
+		.from("xp_to_level")
+		.select("level")
+		.gt("max_xp", xp)
+		.lt("min_xp", xp);
+
+	return { level, error };
 }
