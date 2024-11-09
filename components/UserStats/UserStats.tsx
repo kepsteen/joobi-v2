@@ -1,7 +1,12 @@
 import { Flame } from "lucide-react";
 import { Card, CardContent } from "../Card/Card";
-import { getStats } from "@/lib/utils/calculations";
+// import { getStats } from "@/lib/utils/supabase/actions";
 import { Stats, StatConfig } from "@/lib/types/types";
+import {
+	calculateApplications,
+	calculateUserStreak,
+} from "@/lib/utils/calculations";
+import { getUserLevel, getUserXP } from "@/lib/utils/supabase/actions";
 
 const STATS_CONFIG: StatConfig[] = [
 	{
@@ -14,10 +19,33 @@ const STATS_CONFIG: StatConfig[] = [
 		key: "applications",
 		icon: null,
 	},
+	{
+		name: "Level",
+		key: "levelValue",
+		icon: null,
+	},
+	{
+		name: "Total XP",
+		key: "xpValue",
+		icon: null,
+	},
 ];
 
 export const UserStats = async () => {
-	const stats = await getStats();
+	const streak = await calculateUserStreak();
+	const applications = await calculateApplications();
+	const { xp } = await getUserXP();
+	const xpValue = xp?.[0].total_xp as number;
+	const { level } = await getUserLevel(xpValue);
+	const levelValue = level?.[0].level as number;
+
+	const stats = {
+		streak,
+		applications,
+		levelValue,
+		xpValue,
+	};
+
 	return (
 		<Card variant="outline" size="compact" className="w-full max-w-56">
 			<CardContent className="flex flex-col gap-4">

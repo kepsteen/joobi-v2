@@ -1,6 +1,8 @@
 export interface Stats {
 	streak: number;
 	applications: number;
+	levelValue: number;
+	xpValue: number;
 }
 
 export interface StatConfig {

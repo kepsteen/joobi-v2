@@ -1,5 +1,4 @@
 import { getApplicationsCount, getUserVisits } from "./supabase/actions";
-import { Stats } from "@/lib/types/types";
 
 export async function calculateUserStreak() {
 	const { userVisits, error } = await getUserVisits();
@@ -22,14 +21,5 @@ export async function calculateApplications() {
 	if (error || !count) {
 		return 0;
 	}
-
 	return count;
-}
-
-export async function getStats(): Promise<Stats> {
-	const [streak, applications] = await Promise.all([
-		calculateUserStreak(),
-		calculateApplications(),
-	]);
-	return { streak, applications };
 }
