@@ -7,6 +7,7 @@ import {
 	calculateUserStreak,
 } from "@/lib/utils/calculations";
 import { getUserLevel, getUserXP } from "@/lib/utils/supabase/actions";
+import { cn } from "@/lib/utils/utils";
 
 const STATS_CONFIG: StatConfig[] = [
 	{
@@ -38,6 +39,12 @@ export const UserStats = async () => {
 	const xpValue = xp?.[0].total_xp as number;
 	const { level } = await getUserLevel(xpValue);
 	const levelValue = level?.[0].level as number;
+	const minXpValue = level?.[0].min_xp as number;
+	const maxXpValue = level?.[0].max_xp as number;
+
+	const xpToLevel = maxXpValue - minXpValue;
+	const xpEarned = xpValue - minXpValue;
+	const percentLevel = Math.floor((xpEarned / xpToLevel) * 100);
 
 	const stats = {
 		streak,
@@ -54,7 +61,19 @@ export const UserStats = async () => {
 						<p>{stat.name}</p>
 						<span className="flex items-center text-primary">
 							{stat.icon}
-							<p>{stats[stat.key as keyof Stats]}</p>
+							<div
+								className={cn({
+									"radial-progress": stat.key === "levelValue",
+								})}
+								style={
+									{
+										"--value": percentLevel,
+										"--size": "1.5rem",
+									} as React.CSSProperties
+								}
+							>
+								{stats[stat.key as keyof Stats]}
+							</div>
 						</span>
 					</div>
 				))}

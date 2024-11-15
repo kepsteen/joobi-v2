@@ -6,7 +6,8 @@ import { DateTime } from "luxon";
 export async function getXpToLevel() {
 	const supabase = createClient();
 	const { data, error } = await supabase.from("xp_to_level").select();
-	return { data, error };
+	if (error) throw error;
+	return { data };
 }
 
 export async function insertUserVisit(userId: UUID) {
@@ -19,7 +20,8 @@ export async function insertUserVisit(userId: UUID) {
 			most_recent_visit: DateTime.local().toISO({ includeOffset: true }),
 		})
 		.select();
-	return { data, error };
+	if (error) throw error;
+	return { data };
 }
 
 export async function updateUserVisit(userId: UUID) {
@@ -31,7 +33,8 @@ export async function updateUserVisit(userId: UUID) {
 		})
 		.eq("id", userId)
 		.select();
-	return { data, error };
+	if (error) throw error;
+	return { data };
 }
 
 export async function getUserVisit(userId: UUID) {
@@ -40,7 +43,8 @@ export async function getUserVisit(userId: UUID) {
 		.from("user_visits")
 		.select()
 		.eq("id", userId);
-	return { userVisit, error };
+	if (error) throw error;
+	return { userVisit };
 }
 
 export async function getUserVisits() {
@@ -53,7 +57,8 @@ export async function getUserVisits() {
 		.from("user_visits")
 		.select()
 		.eq("id", user?.id);
-	return { userVisits, error };
+	if (error) throw error;
+	return { userVisits };
 }
 
 export async function getApplicationsCount() {
@@ -65,7 +70,8 @@ export async function getApplicationsCount() {
 		.from("applications")
 		.select("*", { count: "exact", head: true })
 		.eq("user_id", user?.id);
-	return { count, error };
+	if (error) throw error;
+	return { count };
 }
 
 export async function getUserXP() {
@@ -77,15 +83,15 @@ export async function getUserXP() {
 		.from("user_xp_totals")
 		.select("total_xp")
 		.eq("user_id", user?.id);
-
-	return { xp, error };
+	if (error) throw error;
+	return { xp };
 }
 
 export async function getUserLevel(xp: number) {
 	const supabase = createClient();
 	const { data: level, error } = await supabase
 		.from("xp_to_level")
-		.select("level")
+		.select("*")
 		.gt("max_xp", xp)
 		.lt("min_xp", xp);
 	return { level, error };
