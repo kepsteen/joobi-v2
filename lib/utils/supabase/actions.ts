@@ -20,7 +20,6 @@ export async function insertUserVisit(userId: UUID) {
 			most_recent_visit: DateTime.local().toISO({ includeOffset: true }),
 		})
 		.select();
-	if (error) throw error;
 	return { data, error };
 }
 
@@ -33,7 +32,6 @@ export async function updateUserVisit(userId: UUID) {
 		})
 		.eq("id", userId)
 		.select();
-	if (error) throw error;
 	return { data, error };
 }
 
