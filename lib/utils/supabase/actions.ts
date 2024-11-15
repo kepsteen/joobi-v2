@@ -21,7 +21,7 @@ export async function insertUserVisit(userId: UUID) {
 		})
 		.select();
 	if (error) throw error;
-	return { data };
+	return { data, error };
 }
 
 export async function updateUserVisit(userId: UUID) {
@@ -34,7 +34,7 @@ export async function updateUserVisit(userId: UUID) {
 		.eq("id", userId)
 		.select();
 	if (error) throw error;
-	return { data };
+	return { data, error };
 }
 
 export async function getUserVisit(userId: UUID) {
