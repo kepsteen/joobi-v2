@@ -54,8 +54,7 @@ export async function getUserVisits() {
 		.from("user_visits")
 		.select()
 		.eq("id", user?.id);
-	if (error) throw error;
-	return { userVisits };
+	return { userVisits, error };
 }
 
 export async function getApplicationsCount() {
