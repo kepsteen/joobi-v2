@@ -41,8 +41,7 @@ export async function getUserVisit(userId: UUID) {
 		.from("user_visits")
 		.select()
 		.eq("id", userId);
-	if (error) throw error;
-	return { userVisit };
+	return { userVisit, error };
 }
 
 export async function getUserVisits() {
