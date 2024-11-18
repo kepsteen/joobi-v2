@@ -9,6 +9,6 @@ export async function getApplications() {
 	const { data: applications, error } = await supabase
 		.from("applications")
 		.select()
-		.eq("user_id", user?.id);
+		.eq("user_id", user?.id as string);
 	return { applications, error };
 }

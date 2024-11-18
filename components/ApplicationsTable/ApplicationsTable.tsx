@@ -14,7 +14,7 @@ import { formatToDollars, formatDate } from "@/lib/utils/formatters";
 import { cn } from "@/lib/utils/utils";
 
 type Applications = Database["public"]["Tables"]["applications"]["Row"] & {
-	company: string; // Added because it comes from the companies table join
+	company?: string; // Added because it comes from the companies table join
 };
 
 const columnHelper = createColumnHelper<Applications>();

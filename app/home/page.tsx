@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { UserAchievements } from "@/components/UserAchievements/UserAchievements";
 import { UserStats } from "@/components/UserStats/UserStats";
 
