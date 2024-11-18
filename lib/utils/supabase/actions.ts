@@ -3,8 +3,16 @@
 import { UUID } from "crypto";
 import { createClient } from "./server";
 import { DateTime } from "luxon";
+import { PostgrestError } from "@supabase/supabase-js";
 
-export async function insertUserVisit(userId: UUID) {
+interface DatabaseResponse<T> {
+	data: T | null;
+	error: PostgrestError | null;
+}
+
+export async function insertUserVisit(
+	userId: UUID
+): Promise<DatabaseResponse<unknown>> {
 	try {
 		const supabase = createClient();
 		const { data, error } = await supabase
@@ -18,15 +26,15 @@ export async function insertUserVisit(userId: UUID) {
 			})
 			.select();
 
-		if (error) console.error("Supabase Error: ", error);
-
-		return { data };
+		return { data, error };
 	} catch (error) {
-		console.error("Unexpected Error: ", error);
+		return { data: null, error: error as PostgrestError };
 	}
 }
 
-export async function updateUserVisit(userId: UUID) {
+export async function updateUserVisit(
+	userId: UUID
+): Promise<DatabaseResponse<unknown>> {
 	try {
 		const supabase = createClient();
 		const { data, error } = await supabase
@@ -37,11 +45,9 @@ export async function updateUserVisit(userId: UUID) {
 			.eq("id", userId)
 			.select();
 
-		if (error) console.error("Supabase Error: ", error);
-
-		return { data };
+		return { data, error };
 	} catch (error) {
-		console.error("Unexpected Error: ", error);
+		return { data: null, error: error as PostgrestError };
 	}
 }
 
