@@ -7,8 +7,10 @@ export async function calculateUserStreak() {
 		return 0;
 	}
 
-	const startDate = new Date(userVisits[0].start_of_current_streak);
-	const endDate = new Date(userVisits[0].most_recent_visit);
+	const startDate = new Date(
+		userVisits[0].start_of_current_streak ?? new Date()
+	);
+	const endDate = new Date(userVisits[0].most_recent_visit ?? new Date());
 
 	const diffTime = Math.abs(endDate.getTime() - startDate.getTime());
 	const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));

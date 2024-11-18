@@ -53,7 +53,7 @@ export async function getUserVisits() {
 	const { data: userVisits, error } = await supabase
 		.from("user_visits")
 		.select()
-		.eq("id", user?.id);
+		.eq("id", user?.id as string);
 	return { userVisits, error };
 }
 
@@ -65,7 +65,7 @@ export async function getApplicationsCount() {
 	const { count, error } = await supabase
 		.from("applications")
 		.select("*", { count: "exact", head: true })
-		.eq("user_id", user?.id);
+		.eq("user_id", user?.id as string);
 	if (error) throw error;
 	return { count };
 }
@@ -78,7 +78,7 @@ export async function getUserXP() {
 	const { data: xp, error } = await supabase
 		.from("user_xp_totals")
 		.select("total_xp")
-		.eq("user_id", user?.id);
+		.eq("user_id", user?.id as string);
 	if (error) throw error;
 	return { xp };
 }
