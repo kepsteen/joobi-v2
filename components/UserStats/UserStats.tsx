@@ -35,12 +35,12 @@ const STATS_CONFIG: StatConfig[] = [
 export const UserStats = async () => {
 	const streak = await calculateUserStreak();
 	const applications = await calculateApplications();
-	const { xp } = await getUserXP();
-	const xpValue = xp?.[0].total_xp as number;
-	const { level } = await getUserLevel(xpValue);
-	const levelValue = level?.[0].level as number;
-	const minXpValue = level?.[0].min_xp as number;
-	const maxXpValue = level?.[0].max_xp as number;
+	const xpResult = await getUserXP();
+	const xpValue = xpResult?.xp?.[0]?.total_xp as number;
+	const levelResult = await getUserLevel(xpValue);
+	const levelValue = levelResult?.level?.[0].level as number;
+	const minXpValue = levelResult?.level?.[0].min_xp as number;
+	const maxXpValue = levelResult?.level?.[0].max_xp as number;
 
 	const xpToLevel = maxXpValue - minXpValue;
 	const xpEarned = xpValue - minXpValue;
@@ -72,7 +72,7 @@ export const UserStats = async () => {
 									} as React.CSSProperties
 								}
 							>
-								{stats[stat.key as keyof Stats]}
+								{stats[stat.key as keyof Stats] ?? "error"}
 							</div>
 						</span>
 					</div>
