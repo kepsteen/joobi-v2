@@ -17,8 +17,8 @@ export async function calculateUserStreak() {
 }
 
 export async function calculateApplications() {
-	const { count, error } = await getApplicationsCount();
-	if (error || !count) {
+	const { count } = await getApplicationsCount();
+	if (!count) {
 		return 0;
 	}
 	return count;
