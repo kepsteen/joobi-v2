@@ -1,12 +1,17 @@
+import { cn } from "@/lib/utils/utils";
 import { ReactNode } from "react";
 
 interface LabelProps extends React.LabelHTMLAttributes<HTMLLabelElement> {
 	children?: ReactNode;
+	className: string;
 }
 
-export const Label = ({ children }: LabelProps) => {
+export const Label = ({ children, className }: LabelProps) => {
 	return (
-		<label className="flex flex-col gap-2" data-testid="testLabel">
+		<label
+			className={cn("flex flex-col gap-2", className)}
+			data-testid="testLabel"
+		>
 			{children}
 		</label>
 	);
